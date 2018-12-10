@@ -1,0 +1,265 @@
+{
+  "name": "Profile",
+  "subgroups": [
+    {
+      "name": "Legal Formation",
+      "subgroups": [],
+      "fields": [
+        {
+          "name": "Entity ID",
+          "value": "8755HGG",
+          "docHash": ""
+        },
+        {
+          "name": "Legal Name",
+          "value": "Customer 1",
+          "docHash": ""
+        },
+        {
+          "name": "Entity Structure",
+          "value": "Public Listed",
+          "docHash": ""
+        },
+        {
+          "name": "Ownership",
+          "value": "Wholly Listed",
+          "docHash": ""
+        },
+        {
+          "name": "Entity Booking Jurisdiction",
+          "value": "Germany",
+          "docHash": ""
+        }
+      ]
+    },
+    {
+      "name": "Corporate Registration and Government ID information",
+      "subgroups": [],
+      "fields": [
+        {
+          "name": "Registration Authority",
+          "value": "H Register 1",
+          "docHash": ""
+        },
+        {
+          "name": "Country of Entity's Registration",
+          "value": "Germany",
+          "docHash": ""
+        },
+        {
+          "name": "Date of Corporate Formation",
+          "value": "January 01, 1928",
+          "docHash": ""
+        },
+        {
+          "name": "Government Issued ID: Number",
+          "value": "3909985797",
+          "docHash": ""
+        },
+        {
+          "name": "Doc: Certificate of Incorporation",
+          "value": "",
+          "docHash": ""
+        },
+        {
+          "name": "Doc: Memorandum and articles of association",
+          "value": "",
+          "docHash": ""
+        }
+      ]
+    },
+    {
+      "name": "Legal Hierarchy",
+      "subgroups": [],
+      "fields": [
+        {
+          "name": "Type (Immediate & Ultimate)",
+          "value": "Immediate",
+          "docHash": ""
+        },
+        {
+          "name": "Parent Entity ID",
+          "value": "3753GBC",
+          "docHash": ""
+        },
+        {
+          "name": "Parent Legal Name",
+          "value": "Customer 1",
+          "docHash": ""
+        },
+        {
+          "name": "Parent Country of Incorporation",
+          "value": "Germany",
+          "docHash": ""
+        },
+        {
+          "name": "Parent's Registered Address",
+          "value": "Werner-von-Siemens-Straße 1 80333 Munich",
+          "docHash": ""
+        },
+        {
+          "name": "Parent's Country of Residence",
+          "value": "Germany",
+          "docHash": ""
+        },
+        {
+          "name": "Name of Listed Exchange",
+          "value": "DAX",
+          "docHash": ""
+        }
+      ]
+    },
+    {
+      "name": "Countries of Business",
+      "subgroups": [],
+      "fields": [
+        {
+          "name": "High risk countries that entity does business in?",
+          "value": "Nil",
+          "docHash": ""
+        },
+        {
+          "name": "% of entity revenue generated in the high risk country that entity does business in",
+          "value": "0%",
+          "docHash": ""
+        },
+        {
+          "name": "Number of employees",
+          "value": "0",
+          "docHash": ""
+        }
+      ]
+    },
+    {
+      "name": "Financial Information",
+      "subgroups": [],
+      "fields": [
+        {
+          "name": "Reporting Currency of financial statement",
+          "value": "EURO",
+          "docHash": ""
+        },
+        {
+          "name": "Total Revenue",
+          "value": "80,000,000,000",
+          "docHash": ""
+        },
+        {
+          "name": "Total Asset Size",
+          "value": "21,000,000,000",
+          "docHash": ""
+        },
+        {
+          "name": "Total Shareholders' Equity",
+          "value": "24,000,000,000",
+          "docHash": ""
+        },
+        {
+          "name": "Name of Auditor",
+          "value": "Deloitte",
+          "docHash": ""
+        },
+        {
+          "name": "Doc: Annual Report",
+          "value": "",
+          "docHash": ""
+        }
+      ]
+    },
+    {
+      "name": "Key Controllers and Directors",
+      "subgroups": [],
+      "fields": [
+        {
+          "name": "Type",
+          "value": "Director",
+          "docHash": ""
+        },
+        {
+          "name": "Corporate: Entity's Full Legal Name",
+          "value": "Joe Smith",
+          "docHash": ""
+        },
+        {
+          "name": "Corporate: ID/MEI",
+          "value": "24859692",
+          "docHash": ""
+        }
+      ]
+    },
+    {
+      "name": "Beneficial Ownership",
+      "subgroups": [
+        {
+          "name": "Owner",
+          "subgroups": [],
+          "fields": [
+            {
+              "name": "Type of Beneficial Owner (company/individual)",
+              "value": "Company",
+              "docHash": ""
+            },
+            {
+              "name": "Level of Beneficial Owner (intermediate / ultimate)",
+              "value": "Ultimate",
+              "docHash": ""
+            },
+            {
+              "name": "% ownership of KYC Entity",
+              "value": "24%",
+              "docHash": ""
+            },
+            {
+              "name": "Position",
+              "value": "Director",
+              "docHash": ""
+            },
+            {
+              "name": "Individual: First Name",
+              "value": "Rocky",
+              "docHash": ""
+            },
+            {
+              "name": "Individual: Last Name",
+              "value": "Busch",
+              "docHash": ""
+            },
+            {
+              "name": "Individual: DOB",
+              "value": "July 12, 1980",
+              "docHash": ""
+            },
+            {
+              "name": "Individual: Address",
+              "value": "Berlin, HRB 16700 Munich, HRB 8884",
+              "docHash": ""
+            },
+            {
+              "name": "Individual: Country of Residence",
+              "value": "Germany",
+              "docHash": ""
+            },
+            {
+              "name": "Doc: Passport",
+              "value": "Germany",
+              "docHash": ""
+            }
+          ]
+        }
+      ],
+      "fields": [
+        {
+          "name": "Number of Individual Beneficial Owners identified",
+          "value": "1",
+          "docHash": ""
+        },
+        {
+          "name": "Number of Corporate Beneficial Owners identified",
+          "value": "0",
+          "docHash": ""
+        }
+      ]
+    }
+  ],
+  "fields": []
+}

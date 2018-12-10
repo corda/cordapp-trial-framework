@@ -1,0 +1,126 @@
+#!/bin/bash
+
+PROJECT_NAME="CordaKYC-Q4 2018"
+INSTALL_SCRIPT_NAME='install.sh'
+INSTALL_SCRIPT_URL='https://public.3.basecamp.com/p/6JcFrrnbjPeMTmcaYsZm3AVT/upload/download/install.sh'
+
+UNINSTALL_SCRIPT_NAME='uninstall.sh'
+UNINSTALL_SCRIPT_URL='https://public.3.basecamp.com/p/XA42auJB7kGaUF2fhenohS8w/upload/download/uninstall.sh'
+
+BOOTSTRAP_SCRIPT_NAME='bootstrap.sh'
+BOOTSTRAP_SCRIPT_URL='https://public.3.basecamp.com/p/Yowo6Ak13QVUYbZW1vwBF9KK/upload/download/bootstrap.sh'
+
+
+ status_msg () {
+     printf ' \n\n \e[1;34m%-6s\e[m \n' "*** ${1} ***"
+ }
+
+ error_msg () {
+     printf ' \n\n \e[1;31m%-6s\e[m \n' "*** ${1} ***"
+ }
+
+ msg () {
+     printf ' \e[0m%-6s\e[m \n' " ${1} "
+ }
+
+function usage()
+{
+    msg "Cordapp Trial Management script for $PROJECT_NAME ..."
+    msg "options: "
+    msg "-h --help"
+    msg "--install - installs the solution based on one of several roles"
+    msg "--uninstall - remove the solution and all accompanying data"
+    msg "--bootstrap - request membership to the business network"
+    msg ""
+    msg "Example: $0 --install"
+    msg "         $0 --uninstall"
+    msg "         $0 --bootstrap"
+}
+
+
+make_workspace() {
+
+    if [[ ! -d $HOME/.cordapp_trial ]]
+    then
+        mkdir -p $HOME/.cordapp_trial/tmp          # service specific work... like writing configs before installing them
+        mkdir -p $HOME/.cordapp_trial/hist         # track stuff... like when we first installed...
+        mkdir -p $HOME/.cordapp_trial/corda        # working area for cordapp
+        mkdir -p $HOME/.cordapp_trial/ui           # working area for ui component
+        mkdir -p $HOME/.cordapp_trial/archive      # keep copies of stuff across successive installations
+
+        # leave a marker on the first install... (so we know when we're reinstalling)...
+        echo $(date) > $HOME/.cordapp_trial/hist/firstinstall.info
+    fi
+}
+
+ get_script () {
+     cd $HOME/.cordapp_trial/tmp
+     wget -qO ${TARGET_SCRIPT} ${TARGET_SCRIPT_URL}
+     SCRIPT_DOWNLOAD_STATUS=$?
+     if test "$SCRIPT_DOWNLOAD_STATUS" != "0"; then
+        # there were "issues" getting new version... quietly use what you already have
+        echo "ERROR DOWNLOADING SCRIPT: [$SCRIPT_DOWNLOAD_STATUS] $TARGET_SCRIPT $NOW " >> $HOME/.cordapp_trial/hist/updates-hist.log
+     else
+        # put the udpate in place and log the update
+       sudo mv ${TARGET_SCRIPT} /usr/local/bin
+       echo "${PROJECT_NAME}: UPDATE ${TARGET_SCRIPT} $NOW " >> $HOME/.cordapp_trial/hist/updates-hist.log
+     fi
+
+ }
+
+
+
+# --------------------------------------------------
+# -----------------------MAIN-----------------------
+# --------------------------------------------------
+
+# get current timestamp for any necessary logging
+NOW=$(date +"%Y-%m-%d %H:%M:%S")
+
+# create local workspace
+make_workspace
+
+ # if no arguments, then provide the usage statement
+ if [[ $1 == "" && $2 == "" ]]
+ then
+    usage
+    exit
+ fi
+
+
+while [ "$1" != "" ]; do
+    PARAM=`echo $1 | awk -F= '{print $1}'`
+    VALUE=`echo $1 | awk -F= '{print $2}'`
+    case $PARAM in
+        --h | --help)
+            usage
+            exit
+            ;;
+        --install)
+            # get a current version of the install script and pass control to it
+            TARGET_SCRIPT=$INSTALL_SCRIPT_NAME
+            TARGET_SCRIPT_URL=$INSTALL_SCRIPT_URL
+            ;;
+        --uninstall)
+            # get a current version of the uninstall script and pass control to it
+            TARGET_SCRIPT=$UNINSTALL_SCRIPT_NAME
+            TARGET_SCRIPT_URL=$UNINSTALL_SCRIPT_URL
+            ;;
+        --bootstrap)
+            TARGET_SCRIPT=$BOOTSTRAP_SCRIPT_NAME
+            TARGET_SCRIPT_URL=$BOOTSTRAP_SCRIPT_URL
+            ;;
+        *)
+            error_msg "ERROR: unknown parameter \"$PARAM\""
+            usage
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+# grab the target script from basecamp
+get_script
+
+# pass control to the current version of the script
+source /usr/local/bin/$TARGET_SCRIPT

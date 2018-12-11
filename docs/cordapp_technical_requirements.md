@@ -13,7 +13,7 @@ Corda deployments follow a standard 3-tier architecture model. The trial applica
 3.	Corda: This is Cordapp which handles transactions, contracts, flows and recording data to the ledger.
 4. Database: Typically this is H2 or Postgres for open source deployments. Production deployments of Corda use an enterprise database like SQL Server or Oracle. For a short term trial H2 is generally sufficient and is already built into Corda.
 
-![alt text](../graphics/basic_architecture.png "Standard Architecture")
+![alt text](../images/basic_architecture.png "Standard Architecture")
 
 ## Testnet
 The Cordapp trial will be run on Corda Testnet which is the Corda Network sandbox. Testnet provides the network services required to operate a Corda Network including: a Doorman, a Notary and a Network Map. More information can be found here: https://docs.corda.net/head/corda-testnet-intro.html

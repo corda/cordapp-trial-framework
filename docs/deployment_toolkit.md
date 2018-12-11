@@ -14,7 +14,7 @@ Corda applications.
 For purposes of trial Cordapp deployment this document assumes you are
 working with a standard UI/Web Server/Cordapp/Database architecture.
 
-![alt text](../graphics/basic_architecture.png "Standard Architecture")
+![alt text](../images/basic_architecture.png "Standard Architecture")
 
 Deployment will provide support for the UI, Web Server and Corda layer.
 The database layer for new applications is typically H2 for simplicity.

@@ -31,7 +31,8 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [ "$role" == "" ]
 then
-    echo "Which KYC role would you like to bootstrap? (attester/bank/customer/datastore)"
+    # TODO: list your roles here
+    echo "Which role would you like to bootstrap? (<roles>)"
     read role
 fi
 if [ "$hostName" == "" ]
@@ -48,15 +49,16 @@ echo ROLE               = "${role}"
 echo HOST NAME          = "${hostName}"
 echo ALTERNATIVE NAME   = "${alternativeName}"
 
-# bank and customer bootstrap
+# generic bootstrap
 curl -X GET http://${hostName}:10004/api/bootstrap
 
 printf "\n"
 echo "Requesting membership for role $role, alternative name $alternativeName, on url $hostName"
 curl -X POST http://${hostName}:10004/api/membership/request -H "Cache-Control: no-cache" -H 'Content-Type: application/json' -d "{\"displayedName\":\"$alternativeName\",\"role\":\"$role\"}"
 
-# customer specific boostrap
-if [ "$role" = "customer" ]
+# loading test data
+# TODO: use this portion for roles that require test data
+if [ "$role" = <your role> ]
 then
     echo "Waiting for membership confirmation, please wait...."
     # wait for membership to propagate across the business network
@@ -64,7 +66,7 @@ then
 
     printf "\n"
 
-    filepath="/tmp/corda/customerData.json"
+    filepath="/tmp/corda/testData.json"
     curl -X POST \
       http://${hostName}:10004/api/customer/uploadCustomer \
       -H 'Content-Type: application/json' \

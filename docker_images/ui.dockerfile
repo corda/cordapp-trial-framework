@@ -1,7 +1,7 @@
 FROM teracy/angular-cli
 
 # Create app directory
-WORKDIR /tmp/leiaui
+WORKDIR /tmp/ui
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -20,7 +20,7 @@ EXPOSE 8080
 EXPOSE 4200
 #RUN ng serve --host 0.0.0.0 --disable-host-check
 
-VOLUME /tmp/leiaui
+VOLUME /tmp/ui
 
 #RUN ng serve --host 0.0.0.0 --disable-host-check
 ENTRYPOINT ["ng", "serve", "--host", "0.0.0.0"]

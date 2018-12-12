@@ -6,8 +6,10 @@ read username
 echo "=== Installing KYC BNO Cordapp ==="
 mkdir app
 cd ~/app
-git clone "https://$username@bitbucket.org/R3-CEV/leia-ii-cordapp.git"
-cd ~/app/leia-ii-cordapp
+#TODO: replace with your source code repo
+git clone "https://$username@bitbucket.org/R3-CEV/<your repo>.git"
+#TODO: replace with your application directory
+cd ~/app/<your app>
 sudo apt-get update
 sudo apt-get install -y openjdk-8-jdk
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/; export PATH=$PATH:/usr/lib/jvm/java-8-openjdk-amd64/bin

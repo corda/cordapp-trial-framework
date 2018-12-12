@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
-echo "Which Leia role would you like to uninstall? (attester/bank/customer/datastore/bno)"
+# TODO: list your roles here
+echo "Which role would you like to uninstall? (<roles>)"
 read role
 
-Role="${role^}"
-if [ "$role" = "attester" -o "$role" = "datastore" -o "$role" = "bno" ]
+# TODO: confirm this is one of your roles
+if [ "$role" != <role> -a "$role" != <role> -a "$role" != <role> -a "$role" != <role> ]
 then
-    Role="R3-KYC-${role^}"
-elif [ "$role" = "bank" -o "$role" = "customer" ]
-then
-    Role="R3-Demo-${role^}"
-else
     echo "$role not recognized"
     exit 10
 fi

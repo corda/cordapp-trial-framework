@@ -1,6 +1,7 @@
 #!/bin/bash
 
-PROJECT_NAME="CordaKYC-Q4 2018"
+# TODO: replace with your project name
+PROJECT_NAME="<your project>-Q1 2019"
 INSTALL_SCRIPT_NAME='install.sh'
 INSTALL_SCRIPT_URL='https://public.3.basecamp.com/p/6JcFrrnbjPeMTmcaYsZm3AVT/upload/download/install.sh'
 

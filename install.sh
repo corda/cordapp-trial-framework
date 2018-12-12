@@ -109,11 +109,13 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [ "$role" == "" ]
 then
-    echo "Which KYC role would you like to deploy? (attester/bank/customer/datastore)"
+    # TODO: list your roles here
+    echo "Which KYC role would you like to deploy? (<roles>)"
     read role
 fi
 
-if [ "$role" != "attester" -a "$role" != "datastore" -a "$role" != "bank" -a "$role" != "customer" ]
+# TODO: confirm this is one of your roles
+if [ "$role" != <role> -a "$role" != <role> -a "$role" != <role> -a "$role" != <role> ]
 then
     echo "$role not recognized"
     exit 10
@@ -228,8 +230,9 @@ echo "    useSsl=false"                                                >> $GENER
 echo "}"                                                               >> $GENERATED_NODE_CONFIG
 echo "rpcUsers=["                                                      >> $GENERATED_NODE_CONFIG
 echo "    {"                                                           >> $GENERATED_NODE_CONFIG
-echo "        user=leia"                                               >> $GENERATED_NODE_CONFIG
-echo "        password=leiar3"                                         >> $GENERATED_NODE_CONFIG
+#TODO replace with your rpc username and password
+echo "        user=username"                                           >> $GENERATED_NODE_CONFIG
+echo "        password=password123"                                    >> $GENERATED_NODE_CONFIG
 echo "        permissions=["                                           >> $GENERATED_NODE_CONFIG
 echo "            ALL"                                                 >> $GENERATED_NODE_CONFIG
 echo "        ]"                                                       >> $GENERATED_NODE_CONFIG
@@ -257,7 +260,7 @@ echo "  production: false,"                       >> $ANGULAR_CONFIG
 echo "  protocol:'http',"                         >> $ANGULAR_CONFIG
 echo "  hostName:'$hostName',"                    >> $ANGULAR_CONFIG
 
-# set the correct port number... but only for one port in the config file
+# TODO: repalce with the configuration of your UI application
  case $role in
     customer)
         webPort=8080
@@ -304,6 +307,7 @@ mkdir -p $HOME/.cordapp_trial/service/
 status_msg "generating springboot config file"
 SPRINGBOOT_CONFIG="$HOME/.cordapp_trial/service/application.properties"
 touch ${SPRINGBOOT_CONFIG}
+#TODO: replace this config with your own Springboot config
 echo "# ***generated: spring application properties"                                 >  $SPRINGBOOT_CONFIG
 echo "spring.mvc.view.prefix: /"                                                     >> $SPRINGBOOT_CONFIG
 echo "spring.mvc.view.suffix: .jsp"                                                  >> $SPRINGBOOT_CONFIG
@@ -321,10 +325,8 @@ echo "loggging.file=$role/logs/application.log"                                 
 echo "http=http://"                                                                  >> $SPRINGBOOT_CONFIG
 echo "cordaHostName=$hostName"                                                       >> $SPRINGBOOT_CONFIG
 echo "cordaPort=10004"                                                               >> $SPRINGBOOT_CONFIG
-echo "kycGroupMasterList=/api/kycGroupMasterList"                                    >> $SPRINGBOOT_CONFIG
-echo "kycFieldMasterList=/api/kycFieldMasterList"                                    >> $SPRINGBOOT_CONFIG
-echo "whoAmI=/api/me"                                                                >> $SPRINGBOOT_CONFIG
 
+#TODO: add additional config depending on what customization each role has
  case $role in
     customer)
         echo "actionDataAccessReq=/api/customer/actionDataAccessReq"             >> $SPRINGBOOT_CONFIG
@@ -393,29 +395,29 @@ sudo docker login --username cordappTrials --password sjad0sMuKkbR5XDgZ7jmcmo3V9
 
 #run the docker image for ui, services and cordapp
 status_msg "running cordapp container"
-sudo docker pull cordapptrials.azurecr.io/kyc-$role-cordapp:$CORDAPP_DOCKER_IMAGE_VERSION
+sudo docker pull cordapptrials.azurecr.io/$role-cordapp:$CORDAPP_DOCKER_IMAGE_VERSION
 sudo docker run -dti                                                 \
                 --name ${role}_cordapp                               \
                 -p $H2_PORT:$H2_PORT  -p 10002:10002 -p 10003:10003  \
                 -p 10004:10004 -p 10103:10103 -p 1416:1416           \
                 -v $HOME/.cordapp_trial/corda:/tmp/corda/            \
-                cordapptrials.azurecr.io/kyc-$role-cordapp:$CORDAPP_DOCKER_IMAGE_VERSION
+                cordapptrials.azurecr.io/$role-cordapp:$CORDAPP_DOCKER_IMAGE_VERSION
 
 status_msg "starting service container"
-sudo docker pull cordapptrials.azurecr.io/kyc-$role-services:$SERVICE_DOCKER_IMAGE_VERSION
+sudo docker pull cordapptrials.azurecr.io/$role-services:$SERVICE_DOCKER_IMAGE_VERSION
 sudo docker run -dti                                                 \
                 --name ${role}_service                               \
                 -p 8080:8080 -p 8181:8181 -p 8282:8282 -p 8383:8383  \
                 -v $HOME/.cordapp_trial/service:/tmp/service/        \
-                cordapptrials.azurecr.io/kyc-$role-services:$SERVICE_DOCKER_IMAGE_VERSION
+                cordapptrials.azurecr.io/$role-services:$SERVICE_DOCKER_IMAGE_VERSION
 
 status_msg "starting ui container"
-sudo docker pull cordapptrials.azurecr.io/kyc-ui:$UI_DOCKER_IMAGE_VERSION
+sudo docker pull cordapptrials.azurecr.io/trial-ui:$UI_DOCKER_IMAGE_VERSION
 sudo docker run -dti                                 \
                 --name ${role}_ui                    \
                 -p 80:4200                           \
                 -v $HOME/.cordapp_trial/ui:/tmp/ui/  \
-                cordapptrials.azurecr.io/kyc-ui:$UI_DOCKER_IMAGE_VERSION
+                cordapptrials.azurecr.io/trial-ui:$UI_DOCKER_IMAGE_VERSION
 
 echo "All containers have been started. Check 'sudo docker ps -a' to check their status"
 sudo docker ps

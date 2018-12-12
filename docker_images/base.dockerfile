@@ -30,7 +30,7 @@ RUN apk upgrade --update && \
 # download corda jars
 ADD --chown=corda:corda https://dl.bintray.com/r3/corda/net/corda/corda/${CORDA_VERSION}/corda-${CORDA_VERSION}.jar /opt/corda/corda.jar
 ADD --chown=corda:corda https://dl.bintray.com/r3/corda/net/corda/corda-webserver/${CORDA_VERSION}/corda-webserver-${CORDA_VERSION}.jar /opt/corda/corda-webserver.jar
-ADD build/nodes/R3-KYC-Bno/cordapps/bno-0.1.jar /opt/corda/cordapps/
+ADD build/nodes/bno/cordapps/bno-0.1.jar /opt/corda/cordapps/
 ADD lib/membership-service-0.1.jar /opt/corda/cordapps/
 ADD lib/membership-service-contracts-and-states-0.1.jar /opt/corda/cordapps/
 ADD lib/nodepad.jar /opt/corda/

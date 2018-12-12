@@ -31,7 +31,8 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [ "$role" == "" ]
 then
-    echo "Which KYC role would you like to bootstrap? (attester/bank/customer/datastore)"
+    # TODO: list your roles here
+    echo "Which role would you like to bootstrap? (<roles>)"
     read role
 fi
 if [ "$hostName" == "" ]

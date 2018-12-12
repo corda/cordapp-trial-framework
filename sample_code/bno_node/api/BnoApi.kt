@@ -1,9 +1,5 @@
-package com.leia.bno.api
-
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.jaxrs.annotation.JacksonFeatures
-import com.leia.bno.api.types.MembershipState
-import com.leia.bno.exception.PartyNotFoundException
 import net.corda.businessnetworks.membership.bno.ActivateMembershipForPartyFlow
 import net.corda.businessnetworks.membership.bno.RevokeMembershipForPartyFlow
 import net.corda.businessnetworks.membership.states.Membership

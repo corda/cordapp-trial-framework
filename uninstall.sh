@@ -15,13 +15,15 @@ done
 
 if [ "$role" == "" ]
 then
-    echo "Which KYC role would you like to uninstall? (attester/bank/customer/datastore)"
+	# TODO: list your roles here
+    echo "Which role would you like to uninstall? (<roles>)"
     read role
 fi
 
 echo ROLE = "${role}"
 
-if [ "$role" != "attester" -a "$role" != "datastore" -a "$role" != "bank" -a "$role" != "customer" ]
+# TODO: confirm this is one of your roles
+if [ "$role" != <role> -a "$role" != <role> -a "$role" != <role> -a "$role" != <role> ]
 then
     echo "$role not recognized"
     exit 10

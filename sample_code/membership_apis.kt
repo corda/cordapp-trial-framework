@@ -20,7 +20,8 @@
         return try {
             logger.info("Returning this node's membership status")
             val membershipState = getMembershipState()
-            Response.status(Response.Status.OK).entity(com.leia.base.api.types.MembershipStatus(membershipState.status)).build()
+            # TODO: replace with your package name
+            Response.status(Response.Status.OK).entity(com.<your package>.base.api.types.MembershipStatus(membershipState.status)).build()
         } catch (ex: Throwable) {
             logger.error(ex.message, ex)
             Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ex.message!!).build()

@@ -42,13 +42,15 @@ echo "Replacing host names for role $role to $hostname"
 
 cd ~/app/
 
-replaceHostnameInFileIfFileExists "./leia-ii-cordapp/$role/src/main/resources/node_configuration/azure.node.conf" $hostname
-replaceHostnameInFileIfFileExists "./leia-ii-services/$role/src/main/resources/application.properties" $hostname
+# TODO replace with correct path to your configuration
+replaceHostnameInFileIfFileExists "./$role/src/main/resources/node_configuration/azure.node.conf" $hostname
+replaceHostnameInFileIfFileExists "./$role/src/main/resources/application.properties" $hostname
 
 if [ $# -eq 3 ]
   then
     uiFlavour=$3
-    replaceHostnameInFileIfFileExists "./leia-ii-ui/src/environments/environment.$uiFlavour.ts" $hostname
+    # TODO replace with correct path to your configuration
+    replaceHostnameInFileIfFileExists "./src/environments/environment.$uiFlavour.ts" $hostname
 fi
 
 

@@ -1,18 +1,18 @@
 # build
-# docker build -f leia-ii-services.dockerfile -t kyc-attester-services:<version>  --build-arg BUILDTIME_ROLE=attester .
+# docker build -f services.dockerfile -t services:<version>  --build-arg BUILDTIME_ROLE=<trial role> .
 # test
-# docker run -it --name attester_services -p 8383:8383 -v /tmp/service/:/tmp/service/ kyc-attester-services:<version> /bin/bash
+# docker run -it --name <role>_services -p 8383:8383 -v /tmp/service/:/tmp/service/ trial-services:<version> /bin/bash
 # troubleshooting
-# docker run -it --name attester_services -p 8383:8383 -p 5005:5005 -v /tmp/service/:/tmp/service/ kyc-attester-services:<version> /bin/bash
+# docker run -it --name <role>_services -p 8383:8383 -p 5005:5005 -v /tmp/service/:/tmp/service/ trial-services:<version> /bin/bash
 # Release to ACR (Azure Container Registry)
-# docker tag kyc-attester-services:<version> cordapptrials.azurecr.io/kyc-attester-services:<version>
-# docker push cordapptrials.azurecr.io/kyc-attester-services:<version>
+# docker tag trial-services:<version> cordapptrials.azurecr.io/trial-services:<version>
+# docker push cordapptrials.azurecr.io/trial-services:<version>
 
 FROM ubuntu:18.04
 
-# roles: attester; customer; bank; datastore
 # run buildservices.sh first, then build the container... it'll grab the right jar based on the provided role
-ARG BUILDTIME_ROLE=attester 
+# TODO: replace with your role
+ARG BUILDTIME_ROLE=<your role> 
 
 # setup for unattended install
 ENV DEBIAN_FRONTEND=noninteractive
@@ -39,7 +39,8 @@ RUN apt-get install -y openjdk-8-jdk
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 ENV PATH=$PATH:/usr/lib/jvm/java-8-openjdk-amd64/bin
 
-# web server - ports: bank=8282; attester=8383; customer=8080; datastore=8181
+# web server - ports by role
+# TODO: replace with the ports that are required by your web services
 EXPOSE 8080
 EXPOSE 8181
 EXPOSE 8282

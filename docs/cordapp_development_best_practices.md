@@ -1,6 +1,5 @@
 # Cordapp Development Best Practices 
-
-Whether this is your first cordapp or you are an experienced blockchain developer there are a number of best practices that R3 recommends your development team observe in order to produce a high quality trial application.
+Whether this is your first cordapp or you are an experienced blockchain developer there are many best practices your development team should consider in order to produce a high quality trial application.
 
 ## Cordapp Jar Deliverables
 When Corda runs it picks up many Cordapp jar files in the node. These jar files contain the trial application code and are deployed on all nodes in the trial business network. 
@@ -13,6 +12,9 @@ The trial application should be consistently logging activity inside of flows. W
 Any application without logging will be sent back. https://docs.corda.net/node-administration.html#logging
 
 When a flow fails then a FlowException must be thrown: https://docs.corda.net/api/kotlin/corda/net.corda.core.flows/-flow-exception/ The FlowException will not only terminate the flow on the active node but it will rethrow the same exception on all active counterparties to the transaction. This allows all counterparties to cleanly terminate the active flow.
+
+## Transaction Participants
+TODO: how to reduce the number of counterparties
 
 ## Contract Constraints
 Cordapp compatibility is based on contract constraints in Corda: https://docs.corda.net/api-contract-constraints.html These define which Contract verify methods can be used for transactions. By default Corda uses hash constraints. These constaints should have no impact on your application so long as the application is split up as described in the Cordapp jar deliverables.
@@ -37,15 +39,15 @@ You can also query for specific kinds of states to reduce the result set, for ex
 ## X500 Names
 Corda Network identities are established using X500 certificates. These identies are how nodes know who the counterparties in their transactions are. 
 
-The X500 names are established as part of the Testnet deployment and are outside of the control of the participants. Therefore, the trial application must not depend on any information from the X500 name to make any logical decision within the application. If you want to associate a role or label with a node then R3 recommends doing so with the BNMS.
+The X500 names are established as part of the Testnet deployment and are outside of the control of the participants. Therefore, the trial application must not depend on any information from the X500 name to make any logical decision within the application. The BNMS is best suited to associate a role or label with a specific node.
 
 ## RPC Client
-A Corda node can be communicated with by using the RPC Client: https://docs.corda.net/clientrpc.html This is a Java client which communicates to the Corda node over an RPC connection. R3 recommends that the RPC Client be embedded in the web server. This way the web server can translate all http requests from the UI into an RPC request to the Corda node.
+A Corda node can be communicated with by using the RPC Client: https://docs.corda.net/clientrpc.html This is a Java client which communicates to the Corda node over an RPC connection. The RPC Client should be embedded in the web server. This way the web server can translate all http requests from the UI into an RPC request to the Corda node.
 
 An example application for embedding the RPC Client can be found here: https://github.com/corda/corda/tree/master/samples/irs-demo
 
 ## Separation of Roles
-In a Cordapp trial there are typically many roles a participant can take on. Each of these roles must be separated from one another. There are many choices on how to do this, it would be best to confirm your design choice with an R3 team member.
+In a Cordapp trial there are typically many roles a participant can take on. Each of these roles must be separated from one another. There are many choices on how to do this, confirm your design choice with your R3 solutions engineer.
 
 Two common role separation solutions:
 - Have a different Cordapp for each role. Deploy only the relevant Cordapp for the role on each VM.

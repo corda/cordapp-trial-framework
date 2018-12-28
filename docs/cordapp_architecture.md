@@ -1,4 +1,4 @@
-# Cordapp Architecture
+# Cordapp Architecture 
 When building a Cordapp and deploying it to a decentralized network there are a number of new factors to take into consideration. Developers are no longer in control of a single centralized service, the application is independently run by another entity. 
 
 The following sections cover the considerations that must be taken into account when architecting and designing a Cordapp.
@@ -18,8 +18,8 @@ The main benefit of using Corda Enterprise in a trial at this time is the additi
 ## 3-tier Architecture
 Each Corda node follows a standard 3-tier architecture model. This means that the trial application is composed of more than a Cordapp: it also includes a UI and Web Services layer.
 
-1. UI: choice of UI framework is at your discretion. R3 has been facilitating trials which use javascript frameworks such as React.js and AngularJS.
-2.	Web Services: choice of web service layer is at your discretion. Most Corda projects use Springboot. R3 recommends that the web server be JVM based so the Corda RPCClient can be used.
+1. UI: choice of UI framework is at your discretion. Previous trials have used javascript frameworks such as React.js and AngularJS.
+2.	Web Services: choice of web service layer is at your discretion. Most Corda projects use Springboot. The web server should be JVM based so the Corda RPCClient can be used.
 3.	Corda: This is Cordapp which handles transactions, contracts, flows and recording data to the ledger.
 4. Database: Typically this is H2 or Postgres for open source deployments. Production deployments of Corda use an enterprise database like SQL Server or Oracle. For a short term trial H2 is generally sufficient and is already built into Corda.
 
@@ -51,46 +51,39 @@ To explore testnet, you will need to register for an account here: https://testn
 The application will need to meet minimum testing requirements to ensure the success of the trial.
 
 #### Application Testing
-The trial application must pass basic testing on a local machine. Ideally this is done with automated testing to reduce the risk of regression during trial application development. R3 will provide guidance on testing best practices.
+The trial application must pass basic testing on a local machine. Ideally this is done with automated testing to reduce the risk of regression during trial application development. More information can be found:
+ - For [trial applications](./cordapp_testing.md)
+ - From documentation: https://docs.corda.net/api-testing.html
 
 #### Integration Testing
 TODO: scripted testing
 
-#### Network Testing
-Deploy the trial application to Testnet and test the use case when using Testnet network services. Application behaviour on a network may vary from local testing and many types of tests should be run.
-
-Once the application is stable and deployed it should be tested for:
-
-- Load: execute the business use case many times to load 100s or 1000s of transactions to ensure the services continue to function correctly. The quantity of transactions necessary to test will depend on the use case. The system does not need to be tested to the breaking point as a Cordapp Trial is typically lighter weight.
-- Stress: execute the business use case many times in parallel as many participants may use the trial application simultaneously. The max throughput generally does not need to be high high and will depend on the use case as well as the number of trial participants.
-- Performance: ensure the application is responsive to basic usage. This does not mean a high number of transactions per second but that the application is engaging.
-
 ## Business Network Membership Service
 
-Amongst the larger Corda Network each business use case can be separated into business networks. The business network provides a logical separation from the rest of the network that ensures only approved nodes can interact with one another. This is essential in a trial as each iteration of a trial will need to be a separate business network.
+Amongst the Corda Network each business use case can be separated into business networks. The business network provides a logical separation from the rest of the network that ensures only approved nodes can interact with one another. This is essential in a trial as each iteration of a trial will need to be a separate business network.
 
-In order to establish a business network R3 provides a business network membership service (BNMS) as a stand alone application. The BNMS allows for the creation of a business network for the trial operator where membership can be approve and revoked. 
-
-A BNMS is required as part of a Cordapp Trial solution. R3 will provide guidance on best practice usage of the BNMS.
-
-- Separate each Cordapp Trial from previous trials that have been run
-- Assign a business role to each Corda node that defines what actions the node can take
-- Assign a visible description of the node for other members of the network
-
-The BNMS is an open source Cordapp solution: https://github.com/corda/corda-solutions/tree/master/bn-apps/memberships-management
-
-Documentation on how to use the BNMS is here: https://solutions.corda.net/designs/business-networks-membership-service.html
+A detailed walkthrough of integrating the BNMS is [here](./bnms_integration.md)
  
 ## Deployment
-Once the trail application is developed it will need to be deployed to a public cloud infrastructure platform (e.g. AWS, Azure, Google Cloud etc). On premise deployment is out of scope for Cordapp Trials.
+Once the trial application is developed it will need to be deployed to a public cloud infrastructure platform (e.g. AWS, Azure, Google Cloud etc). On premise deployment is out of scope for Cordapp Trials.
 
-This repository containers a deployment toolkit for Cordapp Trials. This enables deploying cordapps by following a standardized architecture pattern. The toolkit includes scripts which configure a VM to run all required services for the trial application.
+The Trial Framework contains a deployment toolkit for Cordapp Trials. This enables the deployment of cordapps by following a standardized architecture pattern. The toolkit includes scripts which configure a VM to run all required services for the trial application.
 
-The trial application is distributed as a series of Docker images for the UI, Web Services and Cordapp. R3 will help your team construct the right Docker configuration and upload the resulting images to a private container registry for sharing the trial images.
+The trial application is distributed as a series of Docker images for the UI, Web Services and Cordapp. These examples serve as a starting point for the right Docker configurations and installation scripts. The resulting images can be uploaded to a private container registry for sharing the trial images during the Cordapp Trial deployment phase.
 
 The steps required for deployment must be documented and will be distributed to clients on how to deploy the trial application. This includes a step by step guide, screen shots, and potentially a video walkthrough.
 
 More information can be found [here](../deployment_toolkit.md)
 
-## Technical Documentation & Brief
-Thorough documentation detailing the architecture and design of the application to share with R3 team. This is to enable R3 to have the tools to support the trial application design and development. The documentation will not be shared beyond R3.
+#### Network Testing
+Deploy the trial application to Testnet and test the use case using Testnet network services. Application behavior on a network may vary from local testing and many types of tests should be run:
+- Load: execute the business use case many times to load 100s or 1000s of transactions to ensure the services continue to function correctly. The quantity of transactions necessary to test will depend on the use case. The system does not need to be tested to the breaking point as a Cordapp Trial is typically lighter weight.
+- Stress: execute the business use case many times in parallel as many participants may use the trial application simultaneously. The max throughput generally does not need to be high high and will depend on the use case as well as the number of trial participants.
+- Performance: ensure the application is responsive to basic usage. This does not mean a high number of transactions per second but that the application is engaging.
+
+#### Trial Summary Animation
+An optional output to the trial is an animation which replays all activity from the global trial. The animation is for marketing outreach and serves as a concise summary of the entire Cordapp Trial experience.
+
+The Cordainsure trial animation can be used as a reference: https://nextproject.co/cordainsure/overview.html
+
+The animation is constructed from the transaction history of a single central provider within the trial. However, not all use cases have a central node involved in all transactions. In that case an additional observer would need to be added to the network or the ledgers of all involved parties would need to be combined.

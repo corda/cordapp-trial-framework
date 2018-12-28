@@ -90,7 +90,7 @@ support the client scritpts.
 
 Scripts in alphabetical order:
 #### bootstrap
-[Bootstrap](../bootstrap.sh)
+[Bootstrap](../scripts/deployment/bootstrap.sh)
 
 Given a few parameters about the VM: create test data and join the trial
 business network. This is an essential script to get correct as all trial
@@ -104,14 +104,14 @@ This script must be hosted on a shared site and downloaded as part of
 executing the cordapp-trial facade script ([cordapp-trial]).
 
 #### build_cordapp_images
-[Build Cordapp Images Sample](../build_cordapp_images.sh)
+[Build Cordapp Images Sample](../scripts/build/build_cordapp_images.sh)
 
 From a development machine build and upload all docker images. This is
 purely internal and used to get the most up to data docker images available
 to participants and testers alike.
 
 #### cordapp-trial
-[Cordapp Trial ("facade")](../cordapp-trial)
+[Cordapp Trial ("facade")](../scripts/deployment/cordapp-trial)
 
 A single script "facade" which will be delivered to all participants. It
 can take 3 actions: install, bootstrap and uninstall. This is the main
@@ -119,13 +119,13 @@ entry point for all participants. It will always use the most to date
 script in the event a deployment script bug needs to be resolved.
 
 #### docker-entrypoint
-[Docker Entrypoint Sample](../docker-entrypoint.sh)
+[Docker Entrypoint Sample](../scripts/deployment/docker-entrypoint.sh)
 
 The internal script which runs Corda within its Docker container. This
 script also defines the runtime parameters for Corda.
 
 #### install
-[Install](../install.sh)
+[Install](../scripts/deployment/install.sh)
 
 Prepare the container and application for usage. This is the most important
 script as it abstracts away all the tricky parts of setting up a Corda node
@@ -139,17 +139,17 @@ This script is hosted on a shared site and downloaded as part of executing
 the cordapp-trial facade script.
 
 #### replaceHostNames
-[Replace Host Names](../replaceHostNames.sh)
+[Replace Host Names](../scripts/deployment/replaceHostNames.sh)
 
 Internal utility script to update the node config based on user input.
 
 #### request-membership
-[Request Membership](../request-membership.sh)
+[Request Membership](../scripts/deployment/request-membership.sh)
 
 Internal script to request membership from the BNO node.
 
 #### uninstall
-[Uninstall](../uninstall.sh)
+[Uninstall](../scripts/deployment/uninstall.sh)
 
 Remove the cordapp, web server and UI from the VM. Typically
 used as part of a reinstall of the trial application.

@@ -4,7 +4,12 @@ For all Cordapps there are many components which are repeated regardless of the 
 The schedule represents preperation for a brand new Cordapp. Existing Cordapp will not need to follow all of these steps.
 
 ## Personnel Requirements
-
+The following is a list of skills that will be utilized when preparing for a Cordapp trial. Multiple requirements may be fulfilled by a single team member.
+- Technical Architect
+- Corda application developer (Java/Kotlin)
+- Web Services developer 
+- UI developer 
+- Devops (Docker/Azure/Linux)
 
 ## Timeline
 The time and developers for each step will vary but previous trial preparations have been done over the course 3-4 months.

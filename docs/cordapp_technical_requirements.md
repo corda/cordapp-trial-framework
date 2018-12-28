@@ -1,12 +1,22 @@
-# Technical Requirements
+# Cordapp Architecture
+When building a Cordapp and deploying it to a decentralized network there are a number of new factors to take into consideration. Developers are no longer in control of a single centralized service, the application is independently run by another entity. 
+
+The following sections cover the considerations that must be taken into account when architecting and designing a Cordapp.
+
+## Simplifications
+In preparation for a Cordapp Trial architecture choices are simplified because the application does not need to be production ready yet. 
+- The Cordapp Trail consists of 2 weeks of deployment and 1 week of trialing the application.
+- All data created will be cleared once the trial is done. Therefore there is no requirement for persisting data for an extended period of time. 
+- All data is mock data. Therefore there is no requirement for security of data because no monetary value or personal information is being exchanged.
+- Deployment is on a public cloud. No approvals are required to deploy on premise and no machines need to be obtained.
 
 ## Corda Open Source and Corda Enterprise
-Either Corda Open Source or Corda Enterprise may be used for a Cordapp trial. Open Source Corda is currently the default for Cordapp Trials but Corda Enterprise can also be used.
+Either Corda Open Source or Corda Enterprise may be used for a Cordapp trial. Open Source Corda is currently the default version used for Cordapp Trials. Corda Enterprise can also be used if desired.
 
-The main benefit of using Corda Enterprise in a trial at this time is the addition of multi-threading. This will improve the performance of Corda in situations where many flows are being run in parallel.
+The main benefit of using Corda Enterprise in a trial at this time is the addition of multi-threading. This will improve the performance of Corda in situations where many flows are being run in parallel. However, Cordapp Trials do not require a high level of performance.
 
-## Architecture
-Corda deployments follow a standard 3-tier architecture model. The trial application is more than a Cordapp. It also includes a UI and Web Services layer.
+## 3-tier Architecture
+Each Corda node follows a standard 3-tier architecture model. This means that the trial application is composed of more than a Cordapp: it also includes a UI and Web Services layer.
 
 1. UI: choice of UI framework is at your discretion. R3 has been facilitating trials which use javascript frameworks such as React.js and AngularJS.
 2.	Web Services: choice of web service layer is at your discretion. Most Corda projects use Springboot. R3 recommends that the web server be JVM based so the Corda RPCClient can be used.
@@ -15,10 +25,25 @@ Corda deployments follow a standard 3-tier architecture model. The trial applica
 
 ![alt text](../images/basic_architecture.png "Standard Architecture")
 
+## User Interface
+The UI looks no different than any standard browser based UI you are accustomed to seeing. The value of the UI is to demonstrate the value of a decentralized solution and the transaction privacy that is built into Corda.
+
+Each trial use case covers many roles and each role should be distinguished with its own verion of the UI. Each role does not need to have a separate code base but each participant should be able to deploy a version of the UI which is specific to the role they are taking on.
+
+When designing the UI keep in mind that the UI will be disconnected from the Corda node. It will interact directly with the web services layer over http and will be completely unaware of the fact that data is being stored on a blockchain ledger. 
+
+## Web Services
+This is a simple layer which translates RESTful http APIs calls into RPC requests for the Corda node. No business logic should be done at this layer. The http APIs will map directly to the Corda flows in a one to one ratio to allow the UI to initiate each type of transaction.
+
+## Cordapp
+The implementation of the Corda solution which maps out the data model and the actions that can be taken within the business use case. 
+
+Best practices on how to develop the Cordapp follow [here](./cordapp_development_best_practices.md)
+
 ## Testnet
 The Cordapp trial will be run on Corda Testnet which is the Corda Network sandbox. Testnet provides the network services required to operate a Corda Network including: a Doorman, a Notary and a Network Map. More information can be found here: https://docs.corda.net/head/corda-testnet-intro.html
 
-The trial framework will facilitate all interaction with Testnet as part of deploying a node. 
+The deployment tooling in the trial framework will help facilitate all interaction with Testnet as part of deploying a node. 
 
 To explore testnet, you will need to register for an account here: https://testnet.corda.network/. If asked for the reason for your request, please write ‘CorDapp Trial Partner’ text box.
 
@@ -27,6 +52,9 @@ The application will need to meet minimum testing requirements to ensure the suc
 
 #### Application Testing
 The trial application must pass basic testing on a local machine. Ideally this is done with automated testing to reduce the risk of regression during trial application development. R3 will provide guidance on testing best practices.
+
+#### Integration Testing
+TODO: scripted testing
 
 #### Network Testing
 Deploy the trial application to Testnet and test the use case when using Testnet network services. Application behaviour on a network may vary from local testing and many types of tests should be run.
@@ -62,8 +90,7 @@ The trial application is distributed as a series of Docker images for the UI, We
 
 The steps required for deployment must be documented and will be distributed to clients on how to deploy the trial application. This includes a step by step guide, screen shots, and potentially a video walkthrough.
 
-More information can be found [here](../README.md)
-
+More information can be found [here](../deployment_toolkit.md)
 
 ## Technical Documentation & Brief
 Thorough documentation detailing the architecture and design of the application to share with R3 team. This is to enable R3 to have the tools to support the trial application design and development. The documentation will not be shared beyond R3.

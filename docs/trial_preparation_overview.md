@@ -33,6 +33,7 @@ Decisions to consider are below. How to make the decision will be covered in the
 - Build the Cordapp using Corda Open Source or Corda Enterprise?
 - What framework to use for web services? The default is Springboot.
 - What framework to use for the UI? Most common choices are Angular and React.
+- What database will be used? Most common choice is to use H2.
 
 Designing the application including model of the following components:
 - States: what data must be represented on ledger?
@@ -53,9 +54,7 @@ The development should be simple for trial purposes as only a single demo use ca
 ### UI + Services Development
 Development of the UI and Services layer should be done in parallel with the Cordapp development. This layer doesn't require a blockchain skillset and can be tested independently of any blockchain functionality. It is important that the people on each layer communicate to ensure that everyone is using the same data model.
 
-Build the web services layer for interacting with the Corda node. This is a simple layer which translates RESTful http APIs calls into RPC requests for the Corda node. The http APIs will map to the Corda flows in a one to one ratio to allow the UI to initiate each type of transaction.
-
-The UI is independent of the Cordapp and should demonstate the benefits of a decentralized network and privacy to it's users.
+In this step the UI and web services layer for interacting with the Corda node will be built. The web services layer will be a basic RESTful API layer which translates API requests into Corda RPC requests. The UI is independent of the Cordapp and should demonstate the benefits of a decentralized network and privacy to it's users.
 
 **Size**: Typically the UI is a large size and the Services are a medium size
 

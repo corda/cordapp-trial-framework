@@ -81,6 +81,10 @@ Once the Cordapp is checking membership in the flow responder each Corda node mu
 
 An example membership request API is [here](../sample_code/business_network/cordapp_node/membership_apis.kt). This request is made from the bootstrap script as seen [here](../scripts/deployment/bootstrap.sh).
 
+Two pieces of information must be provided when requesting membership:
+1. What role will this node play?
+2. What dislpay name should this node have?
+
 From the BNO node perspective an acceptance protocol for membership acceptance must be provided. For the simplicity of the Cordapp trial `MembershipAutoAcceptor` is strongly recommended as a membership acceptance protocol. When auto acceptance is enabled any node that requests membership is automatically approved. This is poor security in a production network but for the simplicity of a short trial this is the lowest cost implementation.
 
 The membership acceptor is defined as a subclass of `BNODecisionMaker`. An [example reference](../sample_code/business_network/bno_node/customization/DecisionMaker.kt) is provided.
@@ -109,6 +113,43 @@ Finally bring all the above pieces together with a [configuration file](../sampl
 - `net.corda.businessnetworks.membership.bnoDecisionMaker` => How to handle membership applications, this will be an automatic acceptor
 
 This configuration file is built into the node which means this configuration cannot be changed at runtime. That means that the X500 names of the BNO and the Notary are locked in once clients have begun deploying. **Make sure you have stable BNO node prior to beginning deployment, otherwise a participant redeploy will be required.**
+
+## Role Lookup
+Now that the Cordapp has joined the business network you can start using membership data to lookup other nodes in the business network. This way your cordapp can target specific nodes to be counterparties depending on what role they have.
+
+The membership object contains to pieces of information:
+1. Role: what role does this node play on the network?
+2. Display Name: reference name for the node
+
+When using flows to interact between node the Cordapp can query the parties of the business network as seen below:
+```
+    @POST
+    @Path("defaultAttestation")
+    fun getDefaultAttestation(): Response {
+        return try {
+            val roles = getPartiesOnThisBusinessNetwork().filter {
+                it.membershipMetadata.role.equals(<your role>,true)
+            }.map { it.party }
+            if(roles.size > 1) {
+                return Response.status(NOT_FOUND).entity("Too many roles found in Business Network").build()
+            }
+            val role = roles.firstOrNull()
+            if(role == null) {
+                return Response.status(NOT_FOUND).entity("Role not found in Business Network").build()
+            }
+            logger.info("Going to use this role: $role")
+
+            ....
+    }
+```
+
+A utility function for getting a list of parties can be helpful for wrapping `GetMembersFlow`. This flow will use a local membership cache on the node as going to the BNO node for a membership list repeatedly can cause performance issues. 	
+```
+    private fun getPartiesOnThisBusinessNetwork() : List<PartyAndMembershipMetadata> {
+        val flowHandle = services.startTrackedFlow(::GetMembersFlow,false)
+        return flowHandle.returnValue.getOrThrow()
+    }
+```
 
 ## Membership Cache
 Each node maintains a cache of membership for performance reasons and to be resilient in the event that the BNO node becomes unavailable. 

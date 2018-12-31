@@ -11,6 +11,8 @@ The BNMS is an open source Cordapp solution: https://github.com/corda/corda-solu
 
 Documentation on how to use the BNMS is here: https://solutions.corda.net/designs/business-networks-membership-service.html
 
+It is expected that the BNMS may need to be modified to meet the needs of specifi Cordapps. For deeper education you can refer to the source code: https://github.com/corda/corda-solutions/tree/master/bn-apps/memberships-management/membership-service/src/main/kotlin/net/corda/businessnetworks/membership 
+
 ## How to integrate the BNMS
 Integrating the BNMS requires changes in the Cordapp and a new node within the trial business network. The following steps cover each area of the Cordapp that needs to be adapted for the BNMS.
 

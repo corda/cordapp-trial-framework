@@ -19,7 +19,7 @@ Integrating the BNMS requires changes in the Cordapp and a new node within the t
 Example source code from the 2018 KYC Cordapp Trial is [included](../sample_code/bno_node).
 
 ## Business Network Operator (BNO) Node
-Each business network requires a BNO node in addition to the standard network services provided by a Corda Network. The BNO node tracks role assignment and membership for the business network it is deployed to. It acts as a lookup for all nodes to know what Corda nodes have membership in the business network and what role that node represents.
+Each business network requires a BNO node in addition to the standard network services provided by a Corda Network. The BNO node tracks role assignment and membership for the business network it is deployed to. It acts as a lookup for nodes within the business network to know what Corda nodes have membership in the business network and what role that node represents.
 
 The BNO node will be represented within the Cordapp's `build.gradle` file.
 
@@ -41,14 +41,16 @@ node {
 
 The Cordapp iteslf will include the compiled jar of the BNO: 
 ```
-    cordaCompile files('../lib/membership-service-0.1.jar')
-    cordaCompile files('../lib/membership-service-contracts-and-states-0.1.jar')
+    cordaCompile files('../lib/membership-service-1.0.jar')
+    cordaCompile files('../lib/membership-service-contracts-and-states-1.0.jar')
 ```
 
 ## Flow Responder Integration
 The BNO node does not enforce membership within the business network. Memebership enforcement occurs with each flow's responder class. This is the entry point for any node which has a flow initiated to that node. Each flow responder will check that the counter party who is initiating the flow responder is a member of the business network. 
 
-The membership check is made automatically within a new BNO provided super class `BusinessNetworkAwareInitiatedFlow`. The Cordapp's flow responders should inherit from this class as follows:
+The membership check is made automatically within a new BNO provided super class `BusinessNetworkAwareInitiatedFlow`. This is demonstrated in the BNMS readme: https://github.com/corda/corda-solutions/tree/master/bn-apps/memberships-management#designing-your-flows-for-business-networks
+
+The Cordapp's flow responders should inherit from this class as follows:
 ```
     @InitiatedBy(Initiator::class)
     class Acceptor(flowSession: FlowSession) : BusinessNetworkAwareInitiatedFlow<SignedTransaction>(flowSession) {
@@ -77,7 +79,7 @@ override fun bnoIdentity(): Party {
 ```
 
 ## Membership Management
-Once the Cordapp is checking membership in the flow responder each Corda node must apply for membership when it first starts or else it will no longer be able to communicate with the other nodes in the business network. Membership application is done via an http API request. During deployment this API request will be automated to ensure that all trial participant nodes have membership.
+Once the Cordapp is checking membership in the flow responder each Corda node must apply for membership when it first starts or else it will no longer be able to communicate with the other nodes in the business network. Membership application is done via an http API request. During deployment this API request will be automated to ensure that all trial participant nodes have membership. If a message from a non-member is received a "Counterparty not member" exception will be thrown.
 
 An example membership request API is [here](../sample_code/business_network/cordapp_node/membership_apis.kt). This request is made from the bootstrap script as seen [here](../scripts/deployment/bootstrap.sh).
 
@@ -113,6 +115,8 @@ Finally bring all the above pieces together with a [configuration file](../sampl
 - `net.corda.businessnetworks.membership.bnoDecisionMaker` => How to handle membership applications, this will be an automatic acceptor
 
 This configuration file is built into the node which means this configuration cannot be changed at runtime. That means that the X500 names of the BNO and the Notary are locked in once clients have begun deploying. **Make sure you have stable BNO node prior to beginning deployment, otherwise a participant redeploy will be required.**
+
+More information on the configuration is available in the BNMS repository: https://github.com/corda/corda-solutions/tree/master/bn-apps/memberships-management#configuration
 
 ## Role Lookup
 Now that the Cordapp has joined the business network you can start using membership data to lookup other nodes in the business network. This way your cordapp can target specific nodes to be counterparties depending on what role they have.

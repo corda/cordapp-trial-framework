@@ -92,7 +92,7 @@ From the BNO node perspective an acceptance protocol for membership acceptance m
 The membership acceptor is defined as a subclass of `BNODecisionMaker`. An [example reference](../sample_code/business_network/bno_node/customization/DecisionMaker.kt) is provided.
 
 ```
-class DecisionMaker() : BNODecisionMaker {
+class DecisionMaker() : MembershipAutoAcceptor {
 
     override fun autoActivateThisMembership(membershipState: Membership.State): Boolean {
         return listOf({<your roles>}).contains(membershipState.membershipMetadata.role.toLowerCase())
@@ -101,7 +101,7 @@ class DecisionMaker() : BNODecisionMaker {
 ```
 
 ## BNO API Endpoints
-The BNO is a central retrieval for membership data. As such it must provide APIs which return the current state of membership. An API should be provided for:
+The BNO is a central retrieval for membership data. As such it must provide APIs which return the current state of membership. An API should be provided for:	
 - `memberships`: the active membership on the ledger
 - `activate`: active a membership on the ledger
 - `revoke`: revoke a membership already on the ledger

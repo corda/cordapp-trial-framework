@@ -41,3 +41,5 @@ It is recommended to follow them in sequence as they should follow your natural 
 - [Cordapp Development Best Practices](./docs/cordapp_development_best_practices.md) - Design considerations for your Cordapp
 - [Integrating the Business Network Management Service](./docs/bnms_integration.md) - How to integrate the BNMS into your Cordapp
 - [Deployment Toolkit](./docs/deployment_toolkit.md) - How to make your cordapp easily deployable by a diverse and potentially non-technical audience in a short period of time
+- [Azure Best Practices](./docs/azure_best_practices.md) - Tips and tricks on how to manage Azure resources for a trial business network.
+- [Participant Onboarding](./docs/participant_onboarding.md) - Now that you have a trial ready application be prepared to answer questions for the participant technical teams.

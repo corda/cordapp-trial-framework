@@ -223,7 +223,7 @@ echo "    dataSource.password=\"Cordacorda1!\" "                       >> $GENER
 echo "}"                                                               >> $GENERATED_NODE_CONFIG
 
 echo "rpcSettings = {"                                                 >> $GENERATED_NODE_CONFIG
-echo "    address=\"${rpcAddress}:10003\""                             >> $GENERATED_NODE_CONFIG
+echo "    address=\"0.0.0.0:10003\""                                   >> $GENERATED_NODE_CONFIG
 echo "    adminAddress=\"${rpcAddress}:10103\""                        >> $GENERATED_NODE_CONFIG
 echo "    standAloneBroker=false"                                      >> $GENERATED_NODE_CONFIG
 echo "    useSsl=false"                                                >> $GENERATED_NODE_CONFIG

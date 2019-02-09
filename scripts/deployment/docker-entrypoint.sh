@@ -10,5 +10,4 @@ if [ ! -f /opt/corda/node.conf ]; then
     cp /tmp/corda/node.conf /opt/corda/
 fi
 chown -R corda:corda /opt/corda
-nohup java -Xmx1024m -jar /opt/corda/corda-webserver.jar &
 java -Xmx2048m -jar /opt/corda/corda.jar

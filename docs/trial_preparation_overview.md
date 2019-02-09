@@ -83,10 +83,12 @@ Combine the above steps to integrate the UI/Servies/Cordapp together for a testa
 Adapt the entire application to the Trial Framework deployment tooling to enable simple deployment. This tooling must streamline the deployment such that a participant with limited technology experience can still deploy the Cordapp.
 
 **Size**: Typically large size
+
 **Output**: A set of scripts, images and infrastructure to support anyone who would like to deploy the Cordapp. Also include documentation for how trial participants can use the deployment tools.
 
 ### End to End Testing
 This is the most important step in trial preparation. It is critical that multiple weeks are allocated to test your Cordapp in Testnet to ensure that your application performs correctly in a deployed Corda Network. 
 
 **Size**: Varies, the effort will depend on what issues are uncovered
+
 **Output**: A finished product which is trial ready

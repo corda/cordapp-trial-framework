@@ -51,12 +51,27 @@ To explore testnet, you will need to register for an account here: https://testn
 The application will need to meet minimum testing requirements to ensure the success of the trial.
 
 #### Application Testing
-The trial application must pass basic testing on a local machine. Ideally this is done with automated testing to reduce the risk of regression during trial application development. More information can be found:
- - For [trial applications](./cordapp_testing.md)
- - From documentation: https://docs.corda.net/api-testing.html
+An inital investment into testing is imperative to ensure the trial deadlines can be met. Creating a test network can be involved and trial test steps can be onerous to perform manually. It is *strongly* recommended that the application development team build the following two test suites at a minimum.
 
-#### Integration Testing
-TODO: scripted testing
+The trial application must pass basic testing on a local machine. The first phase of testing is done with automated unit testing to reduce the risk of regression during trial application development.
+
+The next phase of testing is integration testing of nodes which will be run locally at first before then running the same tests against Corda nodes deployed to the cloud platform of choice.
+
+Information on example implementations can be found here:
+ - For [trial applications](./cordapp_testing.md)
+ - From Corda documentation: https://docs.corda.net/api-testing.html
+
+#### End to End Testing
+Isolated application testing is good for development but insufficient to ensure the Cordapp Trial will be a success. A fully deployed network adds additional complexity:
+* An external notary not within control of the BNO
+* Long lived services like the BNMS
+* Long lived VMs for Corda nodes
+* Integration of API calls from a front end UI
+* Deployment by non-technical users
+* Unexpected user input (aka not the "happy path")
+* Many more
+
+Plan for at least 3 weeks of end to end testing where the trial Cordapp can be tested by people both familiar and unfamiliar with the use case. If you haven't found bugs you're not testing hard enough, especially for new applications.
 
 ## Business Network Membership Service
 

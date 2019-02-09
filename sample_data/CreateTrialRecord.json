@@ -1,0 +1,8 @@
+{
+  "recordId": 1,
+  "counterpartyA": "O=BankOfBreakfastTea,L=London,C=GB",
+  "fieldA": "Sample field",
+  "owner": "The Owner",
+  "pricePaid": 1000,
+  "counterpartyB": "O=BankOfBaguettes,L=Paris,C=FR",
+}

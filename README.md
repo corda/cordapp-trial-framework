@@ -37,7 +37,7 @@ Documentation for integrating the trial framework is available for the following
 It is recommended to follow them in sequence as they should follow your natural development cycle.
 
 - [Trial Preparation Overview](./docs/trial_preparation_overview.md) - Outline of the steps that must be taken to prepare for a successful trial
-- [Cordapp Technical Requirements](./docs/cordapp_technical_requirements.md) - Architecture + application requirements for a trial ready Cordapp
+- [Cordapp Architecture](./docs/cordapp_architecture.md) - Architecture + application requirements for a trial ready Cordapp
 - [Cordapp Development Best Practices](./docs/cordapp_development_best_practices.md) - Design considerations for your Cordapp
 - [Integrating the Business Network Management Service](./docs/bnms_integration.md) - How to integrate the BNMS into your Cordapp
 - [Deployment Toolkit](./docs/deployment_toolkit.md) - How to make your cordapp easily deployable by a diverse and potentially non-technical audience in a short period of time

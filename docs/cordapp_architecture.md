@@ -19,8 +19,8 @@ The main benefit of using Corda Enterprise in a trial at this time is the additi
 Each Corda node follows a standard 3-tier architecture model. This means that the trial application is composed of more than a Cordapp: it also includes a UI and Web Services layer.
 
 1. UI: choice of UI framework is at your discretion. Previous trials have used javascript frameworks such as React.js and AngularJS.
-2.	Web Services: choice of web service layer is at your discretion. Most Corda projects use Springboot. The web server should be JVM based so the Corda RPCClient can be used.
-3.	Corda: This is Cordapp which handles transactions, contracts, flows and recording data to the ledger.
+2. Web Services: choice of web service layer is at your discretion. Most Corda projects use Springboot. The web server should be JVM based so the Corda RPCClient can be used.
+3. Corda: This is Cordapp which handles transactions, contracts, flows and recording data to the ledger.
 4. Database: Typically this is H2 or Postgres for open source deployments. Production deployments of Corda use an enterprise database like SQL Server or Oracle. For a short term trial H2 is generally sufficient and is already built into Corda.
 
 ![alt text](../images/basic_architecture.png "Standard Architecture")
@@ -102,3 +102,17 @@ An optional output to the trial is an animation which replays all activity from 
 The Cordainsure trial animation can be used as a reference: https://nextproject.co/cordainsure/overview.html
 
 The animation is constructed from the transaction history of a single central provider within the trial. However, not all use cases have a central node involved in all transactions. In that case an additional observer would need to be added to the network or the ledgers of all involved parties would need to be combined.
+
+To build the animation log into a central node who has seen all transactions and query the following data:
+
+1. ssh into the Corda node's VM
+2. Copy the h2 database into the VM: `sudo docker cp <cordapp_container>:/opt/corda/persistence.mv.db .`
+3. Copy the h2 database to your local machine `scp r3@<node_dns>.eastus2.cloudapp.azure.com:~/persistence.mv.db .`
+4. Run H2 `.../h2/bin/h2.sh` http://h2database.com
+5. Log into the database:
+    1. `jdbc:h2:/<location of database file>/persistence`
+    2. username `sa`
+    3. password is in the node.conf of the datastore (eg. Cordacorda1!)
+6. `SELECT * FROM VAULT_TRANSACTION_NOTES`
+7. Copy paste the results into an excel spreadsheet for sharing
+

@@ -88,7 +88,7 @@ The trial application is distributed as a series of Docker images for the UI, We
 
 The steps required for deployment must be documented and will be distributed to clients on how to deploy the trial application. This includes a step by step guide, screen shots, and potentially a video walkthrough.
 
-More information can be found [here](../deployment_toolkit.md)
+More information can be found [here](./deployment_toolkit.md)
 
 #### Network Testing
 Deploy the trial application to Testnet and test the use case using Testnet network services. Application behavior on a network may vary from local testing and many types of tests should be run:

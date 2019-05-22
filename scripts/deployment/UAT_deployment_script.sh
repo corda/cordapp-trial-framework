@@ -43,7 +43,7 @@ systemctl is-active --quiet voltron_trial.service && systemctl stop voltron_tria
 printf "${GREEN}Step 1/${TOTAL_STEPS}:${NC} Downloading the [CorDapp Project Name] installation packages..\n"
 
 # Insert a link to an artifactory instance or general hosting tool
-wget -N "https://s3.ap-northeast-2.amazonaws.com/cryptoblk-private-artifactory/voltron-trial-Jp5vccHSroQWxBVYy1/install_package/voltron_trial.tar"
+wget -N "[LINK TO ARTIFACTORY]"
 printf "${GREEN}Step 2/${TOTAL_STEPS}:${NC} Decompressing the installation pacakges..\n"
 tar xvf voltron_trial.tar
 printf "${GREEN}Step 3/${TOTAL_STEPS}:${NC} Gather user input for environment preparation..\n"
@@ -68,11 +68,11 @@ do
     fi
 done
 
-sudo sed -i -e "s/[PROJECT NAME].bn.displayName=.*/voltron.bn.displayName=${[ROLE]}/" membership-service.properties
-sudo sed -i -e "s/[PROJECT NAME].bn.role=.*/voltron.bn.role=${[ROLE]}/" membership-service.properties
+sudo sed -i -e "s/[PROJECT NAME].bn.displayName=.*/[PROJECT NAME].bn.displayName=${[ROLE]}/" membership-service.properties
+sudo sed -i -e "s/[PROJECT NAME].bn.role=.*/[PROJECT NAME].bn.role=${[ROLE]}/" membership-service.properties
 
 
-# Install necessary packages for Voltron
+# Install necessary packages
 printf "${GREEN}Step 4/${TOTAL_STEPS}:${NC} Installing necessary packages for [PROJECT NAME]..\n"
 sudo apt-get upgrade -y 
 sudo apt-get update -y

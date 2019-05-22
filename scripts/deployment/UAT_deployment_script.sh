@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Welcome to the UAT deployment script. Replace all variables in [] with hardcoded values.
+
 # Exit on error
 set -e
 

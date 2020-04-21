@@ -35,7 +35,7 @@ User experience is key in a Corda trial, so one should consider some form of per
 ## Web Services
 This is a simple layer which translates RESTful http APIs calls into RPC requests for the Corda node. No business logic should be done at this layer. The http APIs will map directly to the Corda flows in a one to one ratio to allow the UI to initiate each type of transaction.
 
-Do note that for a trial, we do not prescribe the securities in the likes of a production application, so no TLS is enabled on the HTTP layer. However should your application requires interaction with mobile apps (e.g. IOS), your deployment strategy would have to include provisioning certificates to allow for HTTPS.
+Do note that for a trial, we do not prescribe the securities in the likes of a production application, so no TLS is enabled on the HTTP layer. However should your application require interaction with mobile apps (e.g. IOS), your deployment strategy would have to include provisioning certificates to allow for HTTPS.
 
 ## Cordapp
 The implementation of the Corda solution which maps out the data model and the actions that can be taken within the business use case. 
@@ -44,9 +44,11 @@ Best practices on how to develop the Cordapp follow [here](./cordapp_development
 
 ## Network
 The trial will be run on Corda Testnet or Corda Pre-production Network as prescribed in the SoW should you be running the trial with R3. Testnet or Corda Pre-production Network provides network services required to operate a Corda Network including: an Identity Manager, a Notary and a Network Map Service. More information can be found here: 
-https://docs.corda.net/head/corda-testnet-intro.html https://corda.network/participation/index
+https://docs.corda.net/head/corda-testnet-intro.html 
+https://corda.network/participation/index
 
-The trial deployment framework will facilitate all interaction with Testnet or Pre-prod as part of deploying a node. 
+The trial deployment framework will facilitate all interaction with Testnet or Corda pre-production network as part of deploying a node. 
+
 To explore testnet, you will need to register for an account here: https://testnet.corda.network/. If asked for the reason for your request, please write ‘CorDapp Trial Partner’ text box.
 
 On the other hand, to explore Corda pre-production network, please work with the R3 representative to reach out to Corda Network Foundation.

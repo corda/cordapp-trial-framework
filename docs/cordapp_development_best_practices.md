@@ -1,5 +1,5 @@
 # Cordapp Development Best Practices 
-Whether this is your first cordapp or you are an experienced blockchain developer there are many best practices your development team should consider in order to produce a high quality trial application.
+Whether this is your first cordapp or you are an experienced blockchain developer there are some best practices your development team should consider in order to produce a high quality trial application.
 
 The following sections describe aspects of Cordapp development to keep in mind when preparing your application for the trial. These best practices will help you create a more stable experience for the trial participants.
 
@@ -9,11 +9,11 @@ When Corda runs it picks up many Cordapp jar files in the node. These jar files 
 The application should be built in such a way that the states and contracts are in a separate jar in order to make upgrading the cordapp easier: https://docs.corda.net/writing-a-cordapp.html#structure
 
 ## Separation of Roles
-In a Cordapp trial there are typically many roles within the network that a participant can take on. Each of these roles must be separated from one another. There are two main ways to do this, please confirm your design choice with your R3 solutions engineer.
+In a Cordapp trial there are typically many roles within the network that a participant can take on. Each of these roles must be separated from one another. There are two main ways to do this, please confirm your design choice with your solutions engineer should you be running the trial with R3.
 
 Two common role separation solutions:
 - Have a different Cordapp for each role. Deploy only the relevant Cordapp for the role on each VM.
-- Use BNMS to define the role within the node’s membership. The membership can be retrieved and used in application logic.
+- Establish and use your membership service to define the role within the node’s membership. The membership can be retrieved and used in application logic.
 
 The UI must take roles into account as well. Does a single UI work for all roles or does each role have its own UI? How does the UI show what role is available? 
 
@@ -37,9 +37,6 @@ Flows are best used in situations similar to but not limited to the following:
 
 Flows are not required to do things like query the vault are best not be run constantly on a your trial demo network.
 
-## Transaction Participants
-TODO: how to reduce the number of counterparties
-
 ## Vault Querying + Pagination
 The vault is a set of tables where Corda stores the information on the ledger. The UI of the cordapp will need to query the vault to get the data needed to populate the UI. This can be done using vault services: https://docs.corda.net/api-vault-query.html
 
@@ -50,9 +47,9 @@ You can also query for specific kinds of states to reduce the result set, for ex
 ## X500 Names
 Corda Network identities are established using X500 certificates. These identies are how nodes know who the counterparties in their transactions are. 
 
-The X500 names are established as part of the Testnet deployment and are outside of the control of the participants. Therefore, the trial application must not depend on any information from the X500 name to make any logical decision within the application. The BNMS is best suited to associate a role or label with a specific node.
+The X500 names are typically established as part of the Testnet or Corda pre-production network deployment and are outside of the control of the participants. Therefore, the trial application must not depend on any information from the X500 name to make any logical decision within the application. If you want to associate a role or label with a node then R3 recommends doing so with a membership service.
 
 ## RPC Client
 A Corda node can be communicated with by using the RPC Client: https://docs.corda.net/clientrpc.html This is a Java client which communicates to the Corda node over an RPC connection. The RPC Client should be embedded in the web server. This way the web server can translate all http requests from the UI into an RPC request to the Corda node.
 
-An example application for embedding the RPC Client can be found here: https://github.com/corda/corda/tree/master/samples/irs-demo
+An example application for embedding the RPC Client can be found here: https://github.com/corda/corda/tree/release/os/4.4/samples/irs-demo

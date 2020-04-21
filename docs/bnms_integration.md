@@ -1,4 +1,7 @@
 # Business Network Membership Service 
+**Update**:
+*We do recommend that Membership service should be a feature already considered In all production application. The BNNM CorDapp is deprecated and will not be supported moving forward. User is expected to manage and refactor the codes while it is still available to meet your own application requirements. If you are working with R3 on a trial, then the assigned solutions engineer will provide the necessary assistance.*    
+---
 In order to establish a business network R3 provides a business network membership service (BNMS) as a stand alone application. The BNMS allows for the creation of a business network for the trial operator where membership can be approve and revoked. 
 
 A BNMS is required as part of a Cordapp Trial solution. R3 will provide guidance on best practice usage of the BNMS.

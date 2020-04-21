@@ -6,19 +6,19 @@ Previous Cordapp Trials have covered a wide variety of business use cases with m
 
 - Know Your Customer [(KYC)](https://marketplace.r3.com/solutions/leia-ii)
 - Reinsurance [(Cordainsure)](https://marketplace.r3.com/solutions/cordainsure)
-- Real Estate [(Instant Property)](http://instantpropertynetwork.com/)
+- Trade Finance [(Contour)](https://www.contour.network/)
 
 ## Trial Framework
 
 Partners of R3 who wish to run their application in a Cordapp Trial will need to ensure it is ready to be deployed and used by a set of new customers. This generally requires a series of upgrades to existing Cordapps to provide a seamless experience for trial participants.
 
-This repository contains documents, scripts, code snippets, configuration and sample data that will jump start your Cordapp Trial preparation. The end result will be a Cordapp which is easily deployable to Testnet and ready to meet the scale of a week long global trial.
+This repository contains documents, scripts, code snippets, configuration and sample data that will jump start your Cordapp Trial preparation. The end result will be a Cordapp which is easily deployable to Testnet or Corda Pre-prodcution network and ready to meet the scale of a week long global trial.
 
 ## How should this framework be used?
 
 Whether you're building a new Cordapp from scratch or adapting an existing Cordapp this framework will accelerate your development timelines. The content here has been produced from the experience of previous trials and will allow you to focus on the most important aspect of your development: the business use case. 
 
-In the framework's initial state it is intended to be used in tandem with guidance from your R3 solutions engineer. The content will improve over time to be self-service.
+In the framework's initial state it is intended to be used in tandem with guidance from your R3 solutions engineer. The content will improve over time.
 
 ## What is the Trial Framework?
 

@@ -4,6 +4,8 @@ There are two main ways in which the trial Cordapp should be tested. This is an 
 * Increased agility for late changes to the Cordapp from business scope changes
 * Increased confidence in the quality of the Cordapp + web services
 
+why is network testing not here?
+
 ## Unit Tests
 Testing the application at the component level which include the state, contract and flow. As your application gets more complex, unit testing helps prevent regression especially on edge cases or bugs previously identified. For more examples, you can take a look on the approaches taken in the sample CorDapps (https://github.com/corda/samples).
 

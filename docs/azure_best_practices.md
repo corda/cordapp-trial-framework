@@ -1,6 +1,8 @@
 # Azure Best Practices
 Azure will greatly simplify the deployment of a Corda Business Network. This document outlines a few tips and tricks to help you manage your Business Network.
 
+Maybe worth mentioning other cloud platforms are supported as well. however, the scripts were written for Azure, so using Azure would have an advantage over other cloud platform.
+
 ## Virtual Machines
 * You will be creating and destroying many VMs over the course of the project. Make descriptive names that are unique as they cannot be used again
 * When creating a VM use a password for access instead of an ssh key. Generally these VMs are shared and ssh keys are not easily shareable.

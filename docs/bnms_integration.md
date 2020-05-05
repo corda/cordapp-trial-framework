@@ -4,6 +4,8 @@
 ---
 In order to establish a business network R3 provides a business network membership service (BNMS) as a stand alone application. The BNMS allows for the creation of a business network for the trial operator where membership can be approve and revoked. 
 
+Might be mis-interpreted here. BNMS is required, but not our specific implementation of BNMS.
+
 A BNMS is required as part of a Cordapp Trial solution. R3 will provide guidance on best practice usage of the BNMS.
 
 - Separate each Cordapp Trial from previous trials that have been run

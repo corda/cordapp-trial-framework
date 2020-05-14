@@ -4,8 +4,6 @@ There are two main ways in which the trial Cordapp should be tested. This is an 
 * Increased agility for late changes to the Cordapp from business scope changes
 * Increased confidence in the quality of the Cordapp + web services
 
-why is network testing not here?
-
 ## Unit Tests
 Testing the application at the component level which include the state, contract and flow. As your application gets more complex, unit testing helps prevent regression especially on edge cases or bugs previously identified. For more examples, you can take a look on the approaches taken in the sample CorDapps (https://github.com/corda/samples).
 
@@ -32,3 +30,10 @@ In both cases ensure the the response from the application matches what was expe
 
 Generally each transaction requires dummy JSON data. Example data is provided [here](../sample_data) for both membership requests and state issuance. You will need to modify these files to match your specific use case.
 
+### End to end testing at systems level
+Deploy the trial application to Testnet or Pre-prod and test the use case end to end. Application behaviour on a network may vary from local testing. R3 will provide guidance on testing best practices and will provide a list of assessment criteria to assist in the scope.
+
+Once the application is stable it should be tested for:
+* Load/Soak: execute the business use case many times to load 100s or 1000s of transactions to ensure the services continue to function correctly. The quantity of transactions necessary to test will depend on the use case.
+* Stress: execute the business use case many times in parallel as many participants may use the trial application simultanesouly. The max throughput is generally not high and will depend on the use case and the number of trial participants. This test is especially important if your architecture involves some centralisation such that it may become the central point of failure.
+* Performance: ensure the application is responsive to single usage. This does not mean a high number of transactions per second but rather that the application is engaging. For example, you do not want your participants to wait 5mins on the UI following each action.

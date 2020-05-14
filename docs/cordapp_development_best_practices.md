@@ -9,7 +9,7 @@ When Corda runs it picks up many Cordapp jar files in the node. These jar files 
 The application should be built in such a way that the states and contracts are in a separate jar in order to make upgrading the cordapp easier: https://docs.corda.net/writing-a-cordapp.html#structure
 
 ## Separation of Roles
-In a Cordapp trial there are typically many roles within the network that a participant can take on. Each of these roles must be separated from one another. There are two main ways to do this, please confirm your design choice with your solutions engineer should you be running the trial with R3.
+In a GTM trial there are typically many roles within the network that a participant can take on. Each of these roles must be separated from one another. There are two main ways to do this, please confirm your design choice with your solutions engineer should you be running the trial with R3.
 
 Two common role separation solutions:
 - Have a different Cordapp for each role. Deploy only the relevant Cordapp for the role on each VM.

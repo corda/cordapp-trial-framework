@@ -1,4 +1,4 @@
-# Cordapp Trial Application Deployment
+# GTM Trial Application Deployment
 A trial Cordapp application must externally deployable by the technical participants of the trial. The technical experience of the participants will vary widely so the installation process must be straight forward. The aim of this guide is to jump start the preparation of deployment scripts and tooling which simplifies application deployment.
 
 Included are sample scripts that were used as part of the KYC Trial initiative in 2018. The scripts are for reference purposes and will need to be adapted to your specific application. Each trial application will have been architected differently with diverse tech stack, but we hope that this toolkit will help accelerate your trial Corda applications.
@@ -36,7 +36,7 @@ The minimum requirements are listed below. The machine size may grow based on th
 You can read more about Azure sizing and select the minimum size here: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-general
 
 ## Deployment Tooling
-In order to simplify Corda deployment for individuals with no experience on cloud or blockchain the Cordapp trial framework includes an example deployment toolkit. These toolkits are not a requirement and you may make changes based on your customer requirements and technical architecture.
+In order to simplify Corda deployment for individuals with no experience on cloud or blockchain the GTM trial framework includes an example deployment toolkit. These toolkits are not a requirement and you may make changes based on your customer requirements and technical architecture.
 
 The toolkit includes the following types of resources.
 
@@ -55,7 +55,7 @@ Each architecture layer will have it's own set of challenges for configuration b
 #### (Optional) Business Networks
 If you are running the BNMS CorDapp, then you would need to deploy a BNO node and operated by the trial operator. No participants need to interact with deploying or operating a BNO node. 
 
-As a trial operator you will deploy the BNO node which handles membership for the Cordapp Trial. The BNO node offers a limited set of actions so the node itself is straight forward.
+As a trial operator you will deploy the BNO node which handles membership for the GTM Trial. The BNO node offers a limited set of actions so the node itself is straight forward.
 
 ## Participant Action Overview
 The actions available to technical trial participants are:
@@ -72,17 +72,17 @@ In alphabetical order:
 
 Given a few parameters about the VM: create test data and join the trial business network. This is an essential script to get correct as all trial participants will use it.
 
-Note that not all applications require bootstrapping. In this example the KYC application required a [customer data json file](../sample_data/testdata.json) which was downloaded as part of the install process.
+Note that not all applications require bootstrapping. In this example the KYC application required a [customer data json file](../sample_data/bootstrapdata.json) which was downloaded as part of the install process.
 
 The bootstrap script must be hosted on a shared site (eg. Basecamp) and downloaded as part of executing the [cordapp-trial](../scripts/deployment/cordapp-trial) facade script.
 
 #### build_cordapp_images
 [Build Cordapp Images Sample](../scripts/build/build_cordapp_images.sh)
 
-From a development machine build and upload all docker images. This is purely internal and makes the latest docker images available to participants and testers alike. The built images should be uploaded to the Docker Container Registry being used for the Cordapp Trial.
+From a development machine build and upload all docker images. This is purely internal and makes the latest docker images available to participants and testers alike. The built images should be uploaded to the Docker Container Registry being used for the GTM Trial.
 
 #### cordapp-trial
-[Cordapp Trial ("facade")](../scripts/deployment/cordapp-trial)
+[GTM Trial ("facade")](../scripts/deployment/cordapp-trial)
 
 A single script "facade" which will be delivered to all participants. It can take 3 actions: install, bootstrap and uninstall. This is the main entry point for all participants. It will always use the most to date script in the event a deployment script bug needs to be resolved.
 
@@ -135,7 +135,7 @@ Only relevant is you are running the BNMS CorDapp. The BNO node will use systemc
 ## Deployment Process
 The external process of deploying a trial Cordapp to Testnet should be thoroughly documented. It is critical to create a detailed step by step deployment for of any trial Cordapp. Assume that your audience is not technical at all as you will have a wide range of experiences and languages to accommodate.
 
-Included in this toolkit is a [pdf](../CorporateCordaKYC-DeploymentInstructions.pdf) of the documentation which was given participants as part of the 2018 KYC Cordapp Trial initiative. The Azure cloud deployment portion will remain very similar the same but the script deployment may change based on your application.
+Included in this toolkit is a [pdf](../CorporateCordaKYC-DeploymentInstructions.pdf) of the documentation which was given participants as part of the 2018 KYC GTM Trial (previously CorDapp Trial) initiative. The Azure cloud deployment portion will remain very similar the same but the script deployment may change based on your application.
 
 ## Deployment Infrastructure
 To support deployment in the background you will require the following services:

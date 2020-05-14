@@ -4,7 +4,7 @@ For all Cordapps there are many components which are repeated regardless of the 
 The schedule represents preparation for a brand new Cordapp. Existing Cordapp will not need to follow all of these steps.
 
 ## Personnel Requirements
-The following is a list of skills that will be typically utilized when preparing for a Cordapp trial. Multiple requirements may be fulfilled by a single team member.
+The following is a list of skills that will be typically utilized when preparing for a GTM trial. Multiple requirements may be fulfilled by a single team member.
 - Technical Architect
 - Corda application developer (Java/Kotlin)
 - Web Services developer 

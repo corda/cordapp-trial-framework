@@ -1,8 +1,8 @@
-# Cordapp Trials
+# Go-To-Market (GTM) Trials (formerly Cordapp Trials)
 
-Decentralized blockchain networks require participation from a wide group of participants from a diverse background. Cordapp Trial by R3 provide a 6 week educational walkthrough of applications which solve real world business use cases. A network of dozens of participants from around the world will be brought together for a 1 week global trial which demonstrates the effectivess of blockchain solutions. Trial participants will get hands on with the technology to gain an understanding of what it means to run a real world business application powered by blockchain technology.
+Decentralized blockchain networks require participation from a wide group of participants from a diverse background. GTM Trial by R3 provide a 6 week educational walkthrough of applications which solve real world business use cases. A network of dozens of participants from around the world will be brought together for a 1 week global trial which demonstrates the effectivess of blockchain solutions. Trial participants will get hands on with the technology to gain an understanding of what it means to run a real world business application powered by blockchain technology.
 
-Previous Cordapp Trials have covered a wide variety of business use cases with many more to come.
+Previous GTM Trials have covered a wide variety of business use cases with many more to come.
 
 - Know Your Customer [(KYC)](https://marketplace.r3.com/solutions/leia-ii)
 - Reinsurance [(Cordainsure)](https://marketplace.r3.com/solutions/cordainsure)
@@ -10,9 +10,9 @@ Previous Cordapp Trials have covered a wide variety of business use cases with m
 
 ## Trial Framework
 
-Partners of R3 who wish to run their application in a Cordapp Trial will need to ensure it is ready to be deployed and used by a set of new customers. This generally requires a series of upgrades to existing Cordapps to provide a seamless experience for trial participants.
+Partners of R3 who wish to run their application in a GTM Trial will need to ensure it is ready to be deployed and used by a set of new customers. This generally requires a series of upgrades to existing Cordapps to provide a seamless experience for trial participants.
 
-This repository contains documents, scripts, code snippets, configuration and sample data that will jump start your Cordapp Trial preparation. The end result will be a Cordapp which is easily deployable to Testnet or Corda Pre-prodcution network and ready to meet the scale of a week long global trial.
+This repository contains documents, scripts, code snippets, configuration and sample data that will jump start your GTM Trial preparation. The end result will be a Cordapp which is easily deployable to Testnet or Corda Pre-prodcution network and ready to meet the scale of a week long global trial.
 
 ## How should this framework be used?
 
@@ -22,7 +22,7 @@ In the framework's initial state it is intended to be used in tandem with guidan
 
 ## What is the Trial Framework?
 
-This framework is a result of automation and stability improvements made as a part of executing previous Cordapp Trials. It provides a number of benefits that streamline the process of deploying and operating a Corda node.
+This framework is a result of automation and stability improvements made as a part of executing previous GTM Trials. It provides a number of benefits that streamline the process of deploying and operating a Corda node.
 
 - Scripts to setup Linux VMs
 - Encapsulate the Corda node and related services in docker images 

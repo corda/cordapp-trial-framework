@@ -1,14 +1,12 @@
 # Business Network Membership Service 
 **Update**:
-*We do recommend that Membership service should be a feature already considered In all production application. The BNNM CorDapp is deprecated and will not be supported moving forward. User is expected to manage and refactor the codes while it is still available to meet your own application requirements. If you are working with R3 on a trial, then the assigned solutions engineer will provide the necessary assistance.*    
+*This section talks about the BNMS implementation by the R3 Solutions Engineering team. We do recommend that Membership service be a feature already considered in all production application as the BNNM CorDapp is deprecated and will no longer be maintained. User is expected to manage and refactor the codes while it is still available to meet your own application requirements. If you are working with R3 on a trial, then the assigned solutions engineer will provide the necessary assistance.*    
 ---
-In order to establish a business network R3 provides a business network membership service (BNMS) as a stand alone application. The BNMS allows for the creation of a business network for the trial operator where membership can be approve and revoked. 
+If you want to establish a business network, one can use the business network membership service (BNMS) CorDapp while it is still available. The BNMS allows for the creation of a business network for the trial operator where membership can be approve and revoked. 
 
-Might be mis-interpreted here. BNMS is required, but not our specific implementation of BNMS.
+A BNMS is required as part of a GTM Trial solution. R3 will provide guidance on best practice usage of the BNMS.
 
-A BNMS is required as part of a Cordapp Trial solution. R3 will provide guidance on best practice usage of the BNMS.
-
-- Separate each Cordapp Trial from previous trials that have been run
+- Separate each GTM Trial from previous trials that have been run
 - Assign a business role to each Corda node that defines what actions the node can take
 - Assign a visible description of the node for other members of the network
 
@@ -21,7 +19,7 @@ It is expected that the BNMS may need to be modified to meet the needs of specif
 ## How to integrate the BNMS
 Integrating the BNMS requires changes in the Cordapp and a new node within the trial business network. The following steps cover each area of the Cordapp that needs to be adapted for the BNMS.
 
-Example source code from the 2018 KYC Cordapp Trial is [included](../sample_code/bno_node).
+Example source code from the 2018 KYC GTM Trial is [included](../sample_code/business_network/bno_node).
 
 ## Business Network Operator (BNO) Node
 Each business network requires a BNO node in addition to the standard network services provided by a Corda Network. The BNO node tracks role assignment and membership for the business network it is deployed to. It acts as a lookup for nodes within the business network to know what Corda nodes have membership in the business network and what role that node represents.
@@ -92,7 +90,7 @@ Two pieces of information must be provided when requesting membership:
 1. What role will this node play?
 2. What dislpay name should this node have?
 
-From the BNO node perspective an acceptance protocol for membership acceptance must be provided. For the simplicity of the Cordapp trial `MembershipAutoAcceptor` is strongly recommended as a membership acceptance protocol. When auto acceptance is enabled any node that requests membership is automatically approved. This is poor security in a production network but for the simplicity of a short trial this is the lowest cost implementation.
+From the BNO node perspective an acceptance protocol for membership acceptance must be provided. For the simplicity of the GTM trial `MembershipAutoAcceptor` is strongly recommended as a membership acceptance protocol. When auto acceptance is enabled any node that requests membership is automatically approved. This is poor security in a production network but for the simplicity of a short trial this is the lowest cost implementation.
 
 The membership acceptor is defined as a subclass of `BNODecisionMaker`. An [example reference](../sample_code/business_network/bno_node/customization/DecisionMaker.kt) is provided.
 

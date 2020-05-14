@@ -4,14 +4,14 @@ When building a Cordapp and deploying it to a decentralized network there are a 
 The following sections cover the considerations that must be taken into account when architecting and designing a Cordapp.
 
 ## Simplifications
-In preparation for a Cordapp Trial, architecture choices should be simplified because the application does require all the integrations (if any) necessary for production or every conceivable features to be showcased. 
+In preparation for a GTM Trial, architecture choices should be simplified because the application does require all the integrations (if any) necessary for production or every conceivable features to be showcased. 
 - The Cordapp Trail consists of 2 weeks of deployment and 1 week of trialing the application.
 - All data created will be cleared once the trial is done. Therefore there is no requirement for persisting data for an extended period of time. 
 - All data is mock data. Therefore there is no requirement for security of data because no monetary value or personal information is being exchanged.
 - Deployment is on a public cloud. No approvals are required to deploy on premise and no machines need to be obtained.
 
 ## Corda Open Source and Corda Enterprise
-Either Corda Open Source or Corda Enterprise may be used for a Cordapp trial. The main benefit of using Corda Enterprise in a trial at this time is the addition of multi-threading. This will improve the performance of Corda in situations where many flows are being run in parallel.
+Either Corda Open Source or Corda Enterprise may be used for a GTM trial. The main benefit of using Corda Enterprise in a trial at this time is the addition of multi-threading. This will improve the performance of Corda in situations where many flows are being run in parallel.
 
 ## 3-tier Architecture
 In most of the previous trials, the Corda trial deployments follow a standard 3-tier architecture model. The trial application is more than simply a Cordapp: a UI and Web Services layer must also be included.
@@ -68,7 +68,7 @@ Information on example implementations can be found here:
  - From Corda documentation: https://docs.corda.net/api-testing.html
 
 #### End to End Testing
-Isolated application testing is good for development but insufficient to ensure the Cordapp Trial will be a success. A fully deployed network adds additional complexity:
+Isolated application testing is good for development but insufficient to ensure the GTM Trial will be a success. A fully deployed network adds additional complexity:
 * An external notary not within control of the BNO
 * (optional) Long lived services like the BNMS
 * Long lived VMs for Corda nodes
@@ -83,16 +83,16 @@ Plan for at least 3 weeks of end to end testing where the trial Cordapp can be t
 
 Business use cases on Corda are separated into separate business networks. The business network provides a logical separation that ensures that only approved nodes can interact with one another. This is essential in a trial as each iteration of a trial will need to be a separate business network
 
-As a entrance criteria into an R3 led trial, we institute that the application architecture includes a membership service to restrict trial to participants only. Should this feature be absent because of circumstantial reasons, R3 could still provide some support in the form of a business network membership service (BNMS) as a stand alone application. While the BNMS is not production ready, it allows for the creation of a controlled business network where membership can be approve and revoked. Having said that, BNMS is currently being deprecated, so support will eventually be terminated. As such we do recommend that Membership service should be a feature already considered In all production application.
+As a entrance criteria into an R3 led trial, we institute that the application architecture includes a membership service to restrict trial to participants only. Should this feature be absent because of circumstantial reasons, R3 could still provide some support in the form of a business network membership service (BNMS) as a stand alone application. While the BNMS is not production ready, it allows for the creation of a controlled business network where membership can be approve and revoked. Having said that, BNMS is currently being deprecated and will no longer be maintained. As such we do recommend that Membership service be a feature already considered In all production application.
 
 Do take note that BNMS is not production ready and its existence is in support of the corda trial only.
 
 (Optional) A detailed walkthrough of integrating the R3 BNMS is [here](./bnms_integration.md)
  
 ## Deployment
-Once the trial application is developed it will need to be deployed to a public cloud infrastructure platform (e.g. AWS, Azure, Google Cloud etc). On premise deployment is out of scope for Cordapp Trials.
+Once the trial application is developed it will need to be deployed to a public cloud infrastructure platform (e.g. AWS, Azure, Google Cloud etc). On premise deployment is out of scope for GTM Trials.
 
-The Trial Framework contains a deployment toolkit for Cordapp Trials. This enables the deployment of cordapps by following a standardized architecture pattern. The toolkit includes example scripts which configure a VM to run all required services for the trial application.
+The Trial Framework contains a deployment toolkit for GTM Trials. This enables the deployment of cordapps by following a standardized architecture pattern. The toolkit includes example scripts which configure a VM to run all required services for the trial application.
 
 In our previous Corda trial, the application was distributed as a series of Docker images for the UI, Web Services and Cordapp. R3 can assist your team review and design the right Docker configuration and upload the resulting images to a private container registry for sharing the trial images.
 

@@ -1,4 +1,8 @@
 # Azure Best Practices
+**Notes**: While we have only presented Azure from our past experiences, the GTM trial, especially the Corda platform, can be deployed on all cloud infrastructures (e.g. Google Cloud, Amazon Web Services etc.). Having said that, depending on individual design, the top of the stack application may require integration with proprietary stacks provided by the cloud service provider e.g. Azure AD.
+
+---
+
 Azure will greatly simplify the deployment of a Corda Business Network. This document outlines a few tips and tricks to help you manage your Business Network.
 
 ## Virtual Machines
